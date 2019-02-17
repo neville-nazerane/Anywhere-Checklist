@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NetCore.Angular.Services;
 
 namespace AnywhereChecklist.Website
 {
@@ -31,7 +32,9 @@ namespace AnywhereChecklist.Website
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddAccess(Configuration).AddBusiness();
+            services
+                .AddNetCoreAngular()
+                .AddAccess(Configuration).AddBusiness();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie();

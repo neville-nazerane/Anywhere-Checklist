@@ -41,7 +41,7 @@
     </header>
     <div class="container">
         <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3">
+        <main ng-app="app" role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
@@ -70,8 +70,12 @@
                 integrity="sha256-E/V4cWE4qvAeO5MOhjtGtqDzPndRO1LBk8lJ/PR7CA4=">
         </script>
     </environment>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.min.js"></script>
+    <script src="~/js/app.js"></script>
+    <script src="~/js/controller.js"></script>
+    <script src="~/lib/netcore.angular/js/netcore-angular.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
+    <script-angular></script-angular>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

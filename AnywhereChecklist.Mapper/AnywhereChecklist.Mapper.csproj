@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AnywhereChecklist.Entities\AnywhereChecklist.Entities.csproj" />
+    <ProjectReference Include="..\AnywhereChecklist.Models\AnywhereChecklist.Models.csproj" />
+  </ItemGroup>
+
+</Project>

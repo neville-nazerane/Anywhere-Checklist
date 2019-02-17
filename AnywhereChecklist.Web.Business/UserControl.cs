@@ -1,5 +1,6 @@
 ﻿using AnywhereChecklist.Entities;
 using AnywhereChecklist.Models;
+using AnywhereChecklist.Web.Services;
 using Microsoft.AspNetCore.Identity;
 using NetCore.ModelValidation.Core;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AnywhereChecklist.Web.Business
 {
-    class UserControl
+    class UserControl : IUserControl
     {
         private readonly SignInManager<User> signInManager;
         private readonly UserManager<User> userManager;

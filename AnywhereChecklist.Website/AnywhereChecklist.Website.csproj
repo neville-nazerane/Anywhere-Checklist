@@ -9,6 +9,17 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+    <PackageReference Include="NetCore.ModelValidation" Version="1.0.2" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\AnywhereChecklist.Entities\AnywhereChecklist.Entities.csproj" />
+    <ProjectReference Include="..\AnywhereChecklist.Models\AnywhereChecklist.Models.csproj" />
+    <ProjectReference Include="..\AnywhereChecklist.Web.Business\AnywhereChecklist.Web.Business.csproj" />
+    <ProjectReference Include="..\AnywhereChecklist.Web.DataAccess\AnywhereChecklist.Web.DataAccess.csproj" />
+    <ProjectReference Include="..\AnywhereChecklist.Web.Services\AnywhereChecklist.Web.Services.csproj" />
   </ItemGroup>
 
 </Project>

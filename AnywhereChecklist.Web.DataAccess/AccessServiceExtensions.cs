@@ -1,4 +1,5 @@
 ﻿using AnywhereChecklist.Constants;
+using AnywhereChecklist.Entities;
 using AnywhereChecklist.Web.DataAccess;
 using AnywhereChecklist.Web.Services.Access;
 using Microsoft.EntityFrameworkCore;
@@ -14,13 +15,15 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static IServiceCollection AddAccess(this IServiceCollection services,
                                                 IConfiguration configuration)
-            => services
-                    .AddScoped<ICheckListAccess, CheckListAccess>()
-                    .AddScoped<ICheckListAccess, CheckListAccess>()
-                    .AddDbContext<AppDbContext>(config =>
-                        config.UseSqlServer(configuration.GetConnectionString(DB.ConnectionKey)));
+        {
 
-
-
+            services.AddIdentity<User, UserRole>()
+                    .AddEntityFrameworkStores<AppDbContext>();
+            return services
+                               .AddScoped<ICheckListAccess, CheckListAccess>()
+                               .AddScoped<ICheckListAccess, CheckListAccess>()
+                               .AddDbContext<AppDbContext>(config =>
+                                   config.UseSqlServer(configuration.GetConnectionString(DB.ConnectionKey)));
+        }
     }
 }

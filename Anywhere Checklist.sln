@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnywhereChecklist.Constants
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnywhereChecklist.Web.Migrations", "AnywhereChecklist.Web.Migrations\AnywhereChecklist.Web.Migrations.csproj", "{2435D17C-1642-4E5E-99DD-A982691314E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnywhereChecklist.Website", "AnywhereChecklist.Website\AnywhereChecklist.Website.csproj", "{57564391-A816-4420-A864-DA697FDA8EA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +141,18 @@ Global
 		{2435D17C-1642-4E5E-99DD-A982691314E1}.Release|x64.Build.0 = Release|Any CPU
 		{2435D17C-1642-4E5E-99DD-A982691314E1}.Release|x86.ActiveCfg = Release|Any CPU
 		{2435D17C-1642-4E5E-99DD-A982691314E1}.Release|x86.Build.0 = Release|Any CPU
+		{57564391-A816-4420-A864-DA697FDA8EA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57564391-A816-4420-A864-DA697FDA8EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57564391-A816-4420-A864-DA697FDA8EA7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{57564391-A816-4420-A864-DA697FDA8EA7}.Debug|x64.Build.0 = Debug|Any CPU
+		{57564391-A816-4420-A864-DA697FDA8EA7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{57564391-A816-4420-A864-DA697FDA8EA7}.Debug|x86.Build.0 = Debug|Any CPU
+		{57564391-A816-4420-A864-DA697FDA8EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57564391-A816-4420-A864-DA697FDA8EA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57564391-A816-4420-A864-DA697FDA8EA7}.Release|x64.ActiveCfg = Release|Any CPU
+		{57564391-A816-4420-A864-DA697FDA8EA7}.Release|x64.Build.0 = Release|Any CPU
+		{57564391-A816-4420-A864-DA697FDA8EA7}.Release|x86.ActiveCfg = Release|Any CPU
+		{57564391-A816-4420-A864-DA697FDA8EA7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

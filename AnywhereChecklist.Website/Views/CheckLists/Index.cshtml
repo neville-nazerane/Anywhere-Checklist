@@ -1,0 +1,23 @@
+﻿@model CheckListViewModel
+
+@{
+    ViewData["Title"] = "CheckLists";
+}
+
+    <div class="row">
+        <div class="col-3 list-group" ng-controller="checkListContents" ang-data="CheckLists">
+
+            <div class="list-group-item" ang-repeat="CheckLists">
+                <span ang-bind="CheckList.Title"></span>
+                <button class="btn btn-danger btn-sm float-right">Delete</button>
+            </div>
+
+            <div class="input-group mt-2 mb-3" data-submit-to="@Url.Content("~/api/CheckLists")">
+                <input type="text" class="form-control" placeholder="New List" ng-model="data.title" />
+                <div class="input-group-append">
+                    <button class="btn btn-success btn-sm" type="submit" ng-click="send()">Go</button>
+                </div>
+            </div>
+
+        </div>
+    </div>

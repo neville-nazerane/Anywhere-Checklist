@@ -9,7 +9,7 @@ namespace AnywhereChecklist.Web.Services
 {
     public interface ICheckListRepository
     {
-        Task<CheckList> Addsync(CheckListAdd add);
+        Task<CheckList> AddAsync(CheckListAdd add);
 
         Task<bool> DeleteAsync(int id);
 

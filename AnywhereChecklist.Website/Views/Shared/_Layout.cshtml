@@ -34,13 +34,22 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="~/CheckLists">View Lists</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#">Hello @User.Identity.Name</a>
+                            </li>
+                        }
                     </ul>
+
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
-        <partial name="_CookieConsentPartial" />
         <main ng-app="app" role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -71,8 +80,11 @@
         </script>
     </environment>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.min.js"></script>
+    <script src="~/lib/signalR/signalr.min.js"></script>
     <script src="~/js/app.js"></script>
     <script src="~/js/controller.js"></script>
+    <script src="~/js/directive.js"></script>
+    <script src="~/js/service.js"></script>
     <script src="~/lib/netcore.angular/js/netcore-angular.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script-angular></script-angular>

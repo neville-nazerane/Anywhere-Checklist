@@ -12,6 +12,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddBusiness(this IServiceCollection services)
             => services
                     .AddNetCoreValidations()
+                    .AddScoped<IUserControl, UserControl>()
                     .AddScoped<ICheckListItemRepository, CheckListItemRepository>()
                     .AddScoped<ICheckListRepository, CheckListRepository>();
 

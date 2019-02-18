@@ -19,9 +19,10 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddIdentity<User, UserRole>()
                     .AddEntityFrameworkStores<AppDbContext>();
+
             return services
                                .AddScoped<ICheckListAccess, CheckListAccess>()
-                               .AddScoped<ICheckListAccess, CheckListAccess>()
+                               .AddScoped<ICheckListItemAccess, CheckListItemAccess>()
                                .AddDbContext<AppDbContext>(config =>
                                    config.UseSqlServer(configuration.GetConnectionString(DB.ConnectionKey)));
         }

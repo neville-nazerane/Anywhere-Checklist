@@ -3,17 +3,15 @@
 
     angular
         .module('app')
-        .controller('controller', controller);
 
-    controller.$inject = ['$location'];
+        .controller('checkListContents', function ($scope, dataUpdates, $rootScope) {
 
-    function controller($location) {
-        /* jshint validthis:true */
-        var vm = this;
-        vm.title = 'controller';
+            $rootScope.$on('checkListAdded', function (event, added) {
+                $scope.$apply(function () {
+                    $scope.checkLists.push(added);
+                });
+            });
 
-        activate();
+        });
 
-        function activate() { }
-    }
 })();

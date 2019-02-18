@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,16 +29,22 @@ namespace AnywhereChecklist.Website
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+                options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddSignalR();
+
             services
                 .AddNetCoreAngular()
-                .AddAccess(Configuration).AddBusiness();
+                .AddAccess(Configuration)
+                .AddHelpers()
+                .AddBusiness();
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                    .AddCookie();
+            services.ConfigureApplicationCookie(o => {
+                o.LoginPath = "/account/login";
+                o.LogoutPath = "/account/logout";
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -54,11 +61,11 @@ namespace AnywhereChecklist.Website
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseStaticFiles();
+
             app.UseAuthentication();
 
-            app.UseStaticFiles();
-            app.UseCookiePolicy();
-
+            app.UseHelpers();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

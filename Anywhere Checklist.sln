@@ -15,13 +15,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnywhereChecklist.Web.Busin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnywhereChecklist.Web.Services", "AnywhereChecklist.Web.Services\AnywhereChecklist.Web.Services.csproj", "{4EFF19D9-1C80-40B5-B494-C65F43790A7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnywhereChecklist.Web.Data", "AnywhereChecklist.Web.Data\AnywhereChecklist.Web.Data.csproj", "{CA54812E-E541-4107-A0E9-D2018B4BE0BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnywhereChecklist.Web.Data", "AnywhereChecklist.Web.Data\AnywhereChecklist.Web.Data.csproj", "{CA54812E-E541-4107-A0E9-D2018B4BE0BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnywhereChecklist.Constants", "AnywhereChecklist.Constants\AnywhereChecklist.Constants.csproj", "{735CB1CA-4F74-4574-8A8A-C0FC9A292B37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnywhereChecklist.Constants", "AnywhereChecklist.Constants\AnywhereChecklist.Constants.csproj", "{735CB1CA-4F74-4574-8A8A-C0FC9A292B37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnywhereChecklist.Web.Migrations", "AnywhereChecklist.Web.Migrations\AnywhereChecklist.Web.Migrations.csproj", "{2435D17C-1642-4E5E-99DD-A982691314E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnywhereChecklist.Web.Migrations", "AnywhereChecklist.Web.Migrations\AnywhereChecklist.Web.Migrations.csproj", "{2435D17C-1642-4E5E-99DD-A982691314E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnywhereChecklist.Website", "AnywhereChecklist.Website\AnywhereChecklist.Website.csproj", "{57564391-A816-4420-A864-DA697FDA8EA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnywhereChecklist.Website", "AnywhereChecklist.Website\AnywhereChecklist.Website.csproj", "{57564391-A816-4420-A864-DA697FDA8EA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnywhereChecklist.Web.Helpers", "AnywhereChecklist.Web.Helpers\AnywhereChecklist.Web.Helpers.csproj", "{4634E945-AA5F-420B-B094-997A7CD20DC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -153,6 +155,18 @@ Global
 		{57564391-A816-4420-A864-DA697FDA8EA7}.Release|x64.Build.0 = Release|Any CPU
 		{57564391-A816-4420-A864-DA697FDA8EA7}.Release|x86.ActiveCfg = Release|Any CPU
 		{57564391-A816-4420-A864-DA697FDA8EA7}.Release|x86.Build.0 = Release|Any CPU
+		{4634E945-AA5F-420B-B094-997A7CD20DC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4634E945-AA5F-420B-B094-997A7CD20DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4634E945-AA5F-420B-B094-997A7CD20DC6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4634E945-AA5F-420B-B094-997A7CD20DC6}.Debug|x64.Build.0 = Debug|Any CPU
+		{4634E945-AA5F-420B-B094-997A7CD20DC6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4634E945-AA5F-420B-B094-997A7CD20DC6}.Debug|x86.Build.0 = Debug|Any CPU
+		{4634E945-AA5F-420B-B094-997A7CD20DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4634E945-AA5F-420B-B094-997A7CD20DC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4634E945-AA5F-420B-B094-997A7CD20DC6}.Release|x64.ActiveCfg = Release|Any CPU
+		{4634E945-AA5F-420B-B094-997A7CD20DC6}.Release|x64.Build.0 = Release|Any CPU
+		{4634E945-AA5F-420B-B094-997A7CD20DC6}.Release|x86.ActiveCfg = Release|Any CPU
+		{4634E945-AA5F-420B-B094-997A7CD20DC6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

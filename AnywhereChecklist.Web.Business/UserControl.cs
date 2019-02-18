@@ -41,12 +41,12 @@ namespace AnywhereChecklist.Web.Business
             return false;
         }
 
-        public async Task<ClaimsPrincipal> LoginCheckAsync(Login login)
+        public async Task<User> LoginCheckAsync(Login login)
         {
             var user = userManager.Users.SingleOrDefault(u => u.UserName == login.UserName);
             if (user == null) modelValidator.AddError("Username doesn't exist");
             var result = await signInManager.CheckPasswordSignInAsync(user, login.Password, false);
-            if (result.Succeeded) return await signInManager.CreateUserPrincipalAsync(user);
+            if (result.Succeeded) return user;
             modelValidator.AddError("Invalid login");
             return null;
         }

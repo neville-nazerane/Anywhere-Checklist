@@ -14,15 +14,23 @@ namespace AnywhereChecklist.Web.Business
     {
         private readonly ICheckListAccess access;
         private readonly IUserContext userContext;
+        private readonly IRealTimeDataManager realTimeDataManager;
 
-        public CheckListRepository(ICheckListAccess access, IUserContext userContext)
+        public CheckListRepository(ICheckListAccess access,
+                                   IUserContext userContext,
+                                   IRealTimeDataManager realTimeDataManager)
         {
             this.access = access;
             this.userContext = userContext;
+            this.realTimeDataManager = realTimeDataManager;
         }
 
-        public async Task<CheckList> Addsync(CheckListAdd add)
-            => await access.AddAsync(add, userContext.UserId);
+        public async Task<CheckList> AddAsync(CheckListAdd add)
+        {
+            var response = await access.AddAsync(add, userContext.UserId);
+            await realTimeDataManager.CheckListAddedAsync(response);
+            return response;
+        }
 
         public async Task<CheckList> Updatesync(CheckListUpdate update)
             => await access.UpdateAsync(update, userContext.UserId);
@@ -34,8 +42,10 @@ namespace AnywhereChecklist.Web.Business
             => await access.GetAsync(id, userContext.UserId);
 
         public async Task<bool> DeleteAsync(int id)
-            => await access.DeleteAsync(id, userContext.UserId);
-
-
+        {
+            bool result = await access.DeleteAsync(id, userContext.UserId);
+            if (result) await realTimeDataManager.CheckListDeletedAsync(id);
+            return result;
+        }
     }
 }

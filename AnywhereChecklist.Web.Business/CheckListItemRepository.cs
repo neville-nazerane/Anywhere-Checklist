@@ -13,21 +13,37 @@ namespace AnywhereChecklist.Web.Business
     {
         private readonly ICheckListItemAccess access;
         private readonly IUserContext userContext;
+        private readonly IRealTimeDataManager realTimeDataManager;
 
-        public CheckListItemRepository(ICheckListItemAccess access, IUserContext userContext)
+        public CheckListItemRepository(ICheckListItemAccess access,
+                                       IUserContext userContext,
+                                       IRealTimeDataManager realTimeDataManager)
         {
             this.access = access;
             this.userContext = userContext;
+            this.realTimeDataManager = realTimeDataManager;
         }
 
         public async Task<CheckListItem> AddAsync(CheckListItemAdd item)
-            => await access.AddAsync(item, userContext.UserId);
+        {
+            var result = await access.AddAsync(item, userContext.UserId);
+            if (result != null) await realTimeDataManager.CheckListItemAddedAsync(result);
+            return result;
+        }
 
         public async Task<CheckListItem> UdpateAsync(CheckListItemUpdate item)
-            => await access.UpdateAsync(item, userContext.UserId);
+        {
+            var result = await access.UpdateAsync(item, userContext.UserId);
+            if (result != null) await realTimeDataManager.CheckListItemUpdatedAsync(result);
+            return result;
+        }
 
         public async Task<CheckListItem> CheckAsync(int id, bool check = true)
-            => await access.CheckAcync(id, check, userContext.UserId);
+        {
+            var result = await access.CheckAsync(id, check, userContext.UserId);
+            if (result != null) await realTimeDataManager.CheckListItemUpdatedAsync(result);
+            return result;
+        }
 
         public async Task<CheckListItem> GetAync(int id)
             => await access.GetAsync(id, userContext.UserId);
@@ -35,8 +51,17 @@ namespace AnywhereChecklist.Web.Business
         public async Task<IEnumerable<CheckListItem>> GetForListAcync(int listId)
             => await access.GetForListAsync(listId, userContext.UserId);
 
-        public async Task<bool> DeleteAcync(int id)
-            => await access.DeleteAsync(id, userContext.UserId);
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var success = await access.DeleteAsync(id, userContext.UserId);
+            if (success) await realTimeDataManager.CheckListItemDeletedAsync(id);
+            return success;
+        }
 
+        public async Task ToggleAsync(int id)
+        {
+            var result = await access.ToggleAsync(id, userContext.UserId);
+            if (result != null) await realTimeDataManager.CheckListItemUpdatedAsync(result);
+        }
     }
 }

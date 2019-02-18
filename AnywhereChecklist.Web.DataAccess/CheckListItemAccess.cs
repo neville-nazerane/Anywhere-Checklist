@@ -37,6 +37,7 @@ namespace AnywhereChecklist.Web.DataAccess
                                                         && c.CheckList.UserId == userId);
             if (toUpdate != null)
             {
+                toUpdate.UpdateFrom(update);
                 toUpdate.UpdatedOn = DateTime.Now;
                 await context.SaveChangesAsync();
             }
@@ -61,16 +62,30 @@ namespace AnywhereChecklist.Web.DataAccess
             return true;
         }
 
-        public async Task<CheckListItem> CheckAcync(int id, bool check, int userId)
+        public async Task<CheckListItem> CheckAsync(int id, bool check, int userId)
         {
-            var item = await context.CheckListItems.AsNoTracking().SingleOrDefaultAsync(c => c.Id == id
+            var item = await context.CheckListItems.SingleOrDefaultAsync(c => c.Id == id
                                             && c.CheckList.UserId == userId);
             if (item != null)
             {
                 item.IsCompleted = check;
                 await context.SaveChangesAsync();
+                return item;
             }
-            return null;
+            else return null;
+        }
+
+        public async Task<CheckListItem> ToggleAsync(int id, int userId)
+        {
+            var item = await context.CheckListItems.SingleOrDefaultAsync(c => c.Id == id
+                                            && c.CheckList.UserId == userId);
+            if (item != null)
+            {
+                item.IsCompleted = !item.IsCompleted;
+                await context.SaveChangesAsync();
+                return item;
+            }
+            else return null;
         }
     }
 }

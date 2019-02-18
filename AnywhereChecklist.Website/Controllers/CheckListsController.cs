@@ -28,6 +28,7 @@ namespace AnywhereChecklist.Website.Controllers
             => View(new CheckListViewModel
             {
                 CheckLists = await repository.GetAsync(),
+                CheckListId = id,
                 Items = id == null ? null : await itemRepository.GetForListAcync(id ?? 0)
             });
 

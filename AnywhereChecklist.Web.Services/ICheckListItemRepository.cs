@@ -13,13 +13,13 @@ namespace AnywhereChecklist.Web.Services
 
         Task<CheckListItem> CheckAsync(int id, bool check = true);
 
-        Task<bool> DeleteAcync(int id);
+        Task<bool> DeleteAsync(int id);
 
         Task<CheckListItem> GetAync(int id);
 
         Task<IEnumerable<CheckListItem>> GetForListAcync(int listId);
 
         Task<CheckListItem> UdpateAsync(CheckListItemUpdate item);
-
+        Task ToggleAsync(int id);
     }
 }

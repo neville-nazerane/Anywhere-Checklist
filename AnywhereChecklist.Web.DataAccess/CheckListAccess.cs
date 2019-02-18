@@ -55,6 +55,7 @@ namespace AnywhereChecklist.Web.DataAccess
             var toDelete = await context.CheckLists.SingleOrDefaultAsync(c => c.Id == id && c.UserId == userId);
             if (toDelete == null) return false;
             context.Remove(toDelete);
+            await context.SaveChangesAsync();
             return true;
         }
 

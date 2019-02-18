@@ -28,12 +28,16 @@ namespace AnywhereChecklist.Web.Business
         public async Task<CheckList> AddAsync(CheckListAdd add)
         {
             var response = await access.AddAsync(add, userContext.UserId);
-            await realTimeDataManager.CheckListAddedAsync(response);
+            if (response != null) await realTimeDataManager.CheckListAddedAsync(response);
             return response;
         }
 
-        public async Task<CheckList> Updatesync(CheckListUpdate update)
-            => await access.UpdateAsync(update, userContext.UserId);
+        public async Task<CheckList> UpdateAsync(CheckListUpdate update)
+        {
+            var result = await access.UpdateAsync(update, userContext.UserId);
+            if (result != null) await realTimeDataManager.CheckListUpdatedAsync(result);
+            return result;
+        }
 
         public async Task<IEnumerable<CheckList>> GetAsync()
             => await access.GetAsync(userContext.UserId);

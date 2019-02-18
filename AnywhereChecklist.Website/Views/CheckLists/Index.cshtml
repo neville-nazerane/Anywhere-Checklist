@@ -5,19 +5,90 @@
 }
 
     <div class="row">
-        <div class="col-3 list-group" ng-controller="checkListContents" ang-data="CheckLists">
 
-            <div class="list-group-item" ang-repeat="CheckLists">
-                <span ang-bind="CheckList.Title"></span>
-                <button class="btn btn-danger btn-sm float-right">Delete</button>
+        <div class="col-4 list-group" ng-controller="checkListContents" ang-data="CheckLists">
+
+            <div swapable="" class="list-group-item" ang-repeat="CheckLists">
+                <div swap-index="0">
+                    <a ang-href-prefix="/checkLists?id=" ang-href="CheckList.Id" ang-bind="CheckList.Title"></a>
+
+                    <div class="float-sm-right btn-group">
+                        <button class="btn btn-warning btn-sm" ng-click="swap()">Update</button>
+                        <button class="btn btn-danger btn-sm"
+                                delete-to="/api/CheckLists/{{checkList.id}}">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+                <div class="input-group " swap-index="1"
+                     ng-init="data.id=checkList.id"
+                     update-to="/api/CheckLists" >
+                    <input type="text" class="form-control" ng-init="data.title=checkList.title"
+                           placeholder="Updated Title" ng-model="data.title" />
+                    <div class="float-sm-right btn-group">
+                        <button class="btn btn-success btn-sm" ng-click="send(); swap()">Save</button>
+                        <button class="btn btn-warning btn-sm" ng-click="swap()">Cancel</button>
+                    </div>
+                </div>
             </div>
 
-            <div class="input-group mt-2 mb-3" data-submit-to="@Url.Content("~/api/CheckLists")">
+            <div class="input-group mt-2 mb-3" submit-to="/api/CheckLists">
                 <input type="text" class="form-control" placeholder="New List" ng-model="data.title" />
                 <div class="input-group-append">
-                    <button class="btn btn-success btn-sm" type="submit" ng-click="send()">Go</button>
+                    <button class="btn btn-success btn-sm" type="submit" ng-click="send()">Add</button>
                 </div>
             </div>
 
         </div>
+
+
+        @if (Model.Items != null)
+        {
+        <div ng-controller="checkListItemContents" ang-data="Items" class="col-8 list-group">
+
+            <div swapable="" ang-repeat="Items">
+                <div swap-index="0">
+
+                    <input type="checkbox" ng-model="item.isCompleted"
+                           update-to="/api/Checklists/items/toggle/{{item.id}}"
+                           ng-change="send()" />
+
+                    <span ang-bind="Item.Content"></span>
+
+                    <div class="float-sm-right btn-group">
+                        <button class="btn btn-warning btn-sm" ng-click="swap()">Update</button>
+                        <button class="btn btn-danger btn-sm"
+                                delete-to="/api/CheckLists/items/{{item.id}}">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+                <div class="input-group " swap-index="1"
+                     update-to="/api/CheckLists/items">
+                    <input type="text" class="form-control" ng-init="data.content=item.content"
+                           placeholder="Updated Title" ng-model="data.content" />
+                    <div class="float-sm-right btn-group">
+                        <button class="btn btn-success btn-sm" ng-click="data.id=item.id; send(); swap()">Save</button>
+                        <button class="btn btn-warning btn-sm" ng-click="swap()">Cancel</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="input-group mt-2 mb-3" submit-to="/api/CheckLists/items">
+
+                <input type="text" class="form-control" placeholder="New Item"
+                       ng-model="data.content" />
+
+                <div class="input-group-append">
+                    <button class="btn btn-success btn-sm" type="submit" 
+                            ng-click="data.checkListId=@Model.CheckListId; send()">
+                        Add
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        }
+
     </div>

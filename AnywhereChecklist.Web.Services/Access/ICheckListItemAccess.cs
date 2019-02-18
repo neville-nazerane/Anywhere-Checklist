@@ -19,6 +19,9 @@ namespace AnywhereChecklist.Web.Services.Access
         Task<IEnumerable<CheckListItem>> GetForListAsync(int listId, int userId);
 
         Task<CheckListItem> UpdateAsync(CheckListItemUpdate update, int userId);
-        Task<CheckListItem> CheckAcync(int id, bool check, int userId);
+
+        Task<CheckListItem> CheckAsync(int id, bool check, int userId);
+
+        Task<CheckListItem> ToggleAsync(int id, int userId);
     }
 }

@@ -23,13 +23,23 @@ namespace AnywhereChecklist.Web.Helpers
             this.userContext = userContext;
         }
 
-        public async Task CheckListAddedAsync(CheckList checkList)
-        {
-            await User.SendAsync("checkListAdded", checkList);
-        }
+        public async Task CheckListAddedAsync(CheckList checkList) 
+            => await User.SendAsync("checkListAdded", checkList);
 
         public async Task CheckListDeletedAsync(int id)
-                => await User.SendAsync("checkListDeleted", id);
+            => await User.SendAsync("checkListDeleted", id);
+
+        public async Task CheckListUpdatedAsync(CheckList result)
+            => await User.SendAsync("checkListUpdated", result);
+
+        public async Task CheckListItemAddedAsync(CheckListItem result)
+            => await User.SendAsync("checkListItemAdded", result);
+
+        public async Task CheckListItemUpdatedAsync(CheckListItem result)
+            => await User.SendAsync("checkListItemUpdated", result);
+
+        public async Task CheckListItemDeletedAsync(int id)
+            => await User.SendAsync("checkListItemDeleted", id);
 
     }
 }

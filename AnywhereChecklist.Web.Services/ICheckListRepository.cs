@@ -17,7 +17,7 @@ namespace AnywhereChecklist.Web.Services
 
         Task<CheckList> GetAsync(int id);
 
-        Task<CheckList> Updatesync(CheckListUpdate update);
+        Task<CheckList> UpdateAsync(CheckListUpdate update);
 
     }
 }

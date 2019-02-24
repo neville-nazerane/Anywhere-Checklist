@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AnywhereChecklist.Website.Hubs;
+using AnywhereChecklist.Website.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetCore.Angular.Services;
+using NetCore.Jwt;
 
 namespace AnywhereChecklist.Website
 {
@@ -33,7 +36,12 @@ namespace AnywhereChecklist.Website
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddSignalR();
+
+            services
+                .AddSingleton(new ApiContext {
+                    Base = Configuration["apiBase"]
+                })
+                .AddSignalR();
 
             services
                 .AddNetCoreAngular()
@@ -41,10 +49,15 @@ namespace AnywhereChecklist.Website
                 .AddHelpers()
                 .AddBusiness();
 
-            services.ConfigureApplicationCookie(o => {
-                o.LoginPath = "/account/login";
-                o.LogoutPath = "/account/logout";
-            });
+            services.AddAuthentication()
+                    .AddNetCoreJwt(o => {
+                        o.Secret = Configuration["secret"];
+                    });
+
+            //services.ConfigureApplicationCookie(o => {
+            //    o.LoginPath = "/account/login";
+            //    o.LogoutPath = "/account/logout";
+            //});
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -52,6 +65,11 @@ namespace AnywhereChecklist.Website
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+            app.Use(async (context, next) => {
+                await next();
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -65,7 +83,13 @@ namespace AnywhereChecklist.Website
 
             app.UseAuthentication();
 
-            app.UseHelpers();
+            app.UseMiddleware<SocketAuthMiddleware>();
+
+            app.UseSignalR(c => {
+                c.MapHelpers();
+                c.MapHub<AuthHub>("/authHub");
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

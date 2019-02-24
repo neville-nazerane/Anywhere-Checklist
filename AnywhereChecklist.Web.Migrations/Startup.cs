@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AnywhereChecklist.Constants;
+﻿using AnywhereChecklist.Constants;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AnywhereChecklist.Web.Migrations
 {
+
+
+
     public class Startup
     {
         public IConfiguration Configuration { get; }
@@ -23,7 +22,6 @@ namespace AnywhereChecklist.Web.Migrations
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddDbContext<MigrationDbContext>(c => c.UseSqlServer(Configuration.GetConnectionString(DB.ConnectionKey)));
 
         }

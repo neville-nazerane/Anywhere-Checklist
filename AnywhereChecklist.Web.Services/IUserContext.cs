@@ -9,5 +9,6 @@ namespace AnywhereChecklist.Web.Services
 
         int UserId { get; }
         string UserName { get; }
+        string TokenPlease { get; }
     }
 }

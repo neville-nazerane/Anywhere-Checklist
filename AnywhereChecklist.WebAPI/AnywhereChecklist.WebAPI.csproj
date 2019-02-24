@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <UserSecretsId>anywhere checklist</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="NetCore.Jwt" Version="1.0.0" />
+    <PackageReference Include="NSwag.AspNetCore" Version="12.0.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AnywhereChecklist.Entities\AnywhereChecklist.Entities.csproj" />
+    <ProjectReference Include="..\AnywhereChecklist.Models\AnywhereChecklist.Models.csproj" />
+    <ProjectReference Include="..\AnywhereChecklist.Web.Business\AnywhereChecklist.Web.Business.csproj" />
+    <ProjectReference Include="..\AnywhereChecklist.Web.DataAccess\AnywhereChecklist.Web.DataAccess.csproj" />
+    <ProjectReference Include="..\AnywhereChecklist.Web.Helpers\AnywhereChecklist.Web.Helpers.csproj" />
+    <ProjectReference Include="..\AnywhereChecklist.Web.Services\AnywhereChecklist.Web.Services.csproj" />
+  </ItemGroup>
+
+</Project>

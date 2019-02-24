@@ -50,7 +50,7 @@
                 restrict: 'A',
                 controller: function ($attrs, httpClient) {
                     httpClient.setBase($attrs.apiBase);
-                    httpClient.setJwt($attrs.Jwt);
+                    httpClient.setJwt($attrs.jwt);
                 }
             };
         });

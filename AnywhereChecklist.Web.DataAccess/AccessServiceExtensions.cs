@@ -14,11 +14,12 @@ namespace Microsoft.Extensions.DependencyInjection
     {
 
         public static IServiceCollection AddAccess(this IServiceCollection services,
-                                                IConfiguration configuration)
+                                                IConfiguration configuration, bool requireIdentity = true)
         {
 
-            services.AddIdentity<User, UserRole>()
-                    .AddEntityFrameworkStores<AppDbContext>();
+            if (requireIdentity)
+                services.AddIdentity<User, UserRole>()
+                        .AddEntityFrameworkStores<AppDbContext>();
 
             return services
                                .AddScoped<ICheckListAccess, CheckListAccess>()

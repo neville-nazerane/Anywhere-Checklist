@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AnywhereChecklist.Apps.ViewModels"
+             xmlns:entities="clr-namespace:AnywhereChecklist.Entities;assembly=AnywhereChecklist.Entities"
+             xmlns:components="clr-namespace:AnywhereChecklist.Apps.Components"
+             x:Class="AnywhereChecklist.Apps.Views.ListingPage"
+             x:DataType="vm:ListingViewModel" >
+    <ContentPage.Content>
+        <StackLayout>
+
+            <ListView ItemsSource="{Binding Lists}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="entities:CheckList">
+                        <TextCell Text="{Binding Title}" />
+                        <!--<components:CheckListView CheckList="{Binding}" />-->
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackLayout>
+                <Entry Placeholder="New list"
+                       Text="{Binding NewList.Title}" />
+                <Button Text="Add"
+                        Command="{Binding Add}" />
+            </StackLayout>
+
+            <Button Text="reload" Clicked="ListingPage_Appearing" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

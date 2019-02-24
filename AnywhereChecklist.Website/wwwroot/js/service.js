@@ -3,10 +3,10 @@
 
     angular
         .module('app')
-        .service('dataUpdates', function ($rootScope) {
+        .service('dataUpdates', function ($rootScope, httpClient) {
 
             const connection = new signalR.HubConnectionBuilder()
-                .withUrl("/dataUpdates")
+                .withUrl(httpClient.getBase() + "/dataUpdates")
                 .configureLogging(signalR.LogLevel.Information)
                 .build();
 
@@ -45,15 +45,19 @@
             var base = "";
 
             this.setBase = function (b) {
-                base = b;
+               // base = b;
+            };
+
+            this.getBase = function () {
+                return base;
             };
 
             this.setJwt = function (jwt) {
-                if (typeof jwt === "undefined")
-                $http.defaults.headers.common['Authorization'] = 'Bearer ' + jwt;
+                if (typeof jwt !== "undefined")
+                    $http.defaults.headers.common['Authorization'] = 'Bearer ' + jwt;
             };
 
-            this.get = function(url) {
+            this.get = function (url) {
                 return $http.get(base + url);
             };
 

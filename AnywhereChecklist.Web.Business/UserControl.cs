@@ -44,7 +44,11 @@ namespace AnywhereChecklist.Web.Business
         public async Task<User> LoginCheckAsync(Login login)
         {
             var user = userManager.Users.SingleOrDefault(u => u.UserName == login.UserName);
-            if (user == null) modelValidator.AddError("Username doesn't exist");
+            if (user == null)
+            {
+                modelValidator.AddError("Username doesn't exist");
+                return null;
+            }
             var result = await signInManager.CheckPasswordSignInAsync(user, login.Password, false);
             if (result.Succeeded) return user;
             modelValidator.AddError("Invalid login");

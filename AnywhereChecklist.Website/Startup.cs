@@ -41,7 +41,7 @@ namespace AnywhereChecklist.Website
                 .AddSingleton(new ApiContext {
                     Base = Configuration["apiBase"]
                 })
-                .AddSignalR();
+                .AddSignalR().AddAzureSignalR(c => c.ConnectionString = Configuration["signalR"]);
 
             services
                 .AddNetCoreAngular()
@@ -85,7 +85,7 @@ namespace AnywhereChecklist.Website
 
             app.UseMiddleware<SocketAuthMiddleware>();
 
-            app.UseSignalR(c => {
+            app.UseAzureSignalR(c => {
                 c.MapHelpers();
                 c.MapHub<AuthHub>("/authHub");
             });

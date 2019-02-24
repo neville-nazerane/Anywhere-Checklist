@@ -25,7 +25,7 @@ namespace AnywhereChecklist.Apps.Views
 
             int i = 99;
 
-            //Appearing += ListingPage_Appearing;
+            Appearing += ListingPage_Appearing;
 
         }
 

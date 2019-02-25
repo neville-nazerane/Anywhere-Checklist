@@ -53,8 +53,8 @@
             };
 
             this.setJwt = function (jwt) {
-                if (typeof jwt !== "undefined")
-                    $http.defaults.headers.common['Authorization'] = 'Bearer ' + jwt;
+                //if (typeof jwt !== "undefined")
+                //    $http.defaults.headers.common['Authorization'] = 'Bearer ' + jwt;
             };
 
             this.get = function (url) {

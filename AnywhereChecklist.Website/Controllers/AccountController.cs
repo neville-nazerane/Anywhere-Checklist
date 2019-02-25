@@ -45,7 +45,7 @@ namespace AnywhereChecklist.Website.Controllers
             var user = await userControl.LoginCheckAsync(login);
             if (user == null) return this.ValidateAndView(login);
             await signInManager.SignInAsync(user, true);
-            return Redirect("~/" + login.ReturnUrl);
+            return Redirect(login.ReturnUrl);
         }
 
         public async Task<IActionResult> Logout()

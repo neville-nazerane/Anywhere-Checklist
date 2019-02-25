@@ -83,7 +83,7 @@ namespace AnywhereChecklist.Website
 
             app.UseAuthentication();
 
-            app.UseMiddleware<SocketAuthMiddleware>();
+            //app.UseMiddleware<SocketAuthMiddleware>();
 
             app.UseAzureSignalR(c => {
                 c.MapHelpers();

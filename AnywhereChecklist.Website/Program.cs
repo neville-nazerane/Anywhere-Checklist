@@ -20,7 +20,7 @@ namespace AnywhereChecklist.Website
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseKeyVaultConfiguration(Environment
-                                    .GetEnvironmentVariable("KEYVAULT_ENDPOINT"), "check", true)
+                                    .GetEnvironmentVariable("KEYVAULT_ENDPOINT"), "checklist", true)
                 .UseUrlsIfExist()
                 .UseStartup<Startup>();
 

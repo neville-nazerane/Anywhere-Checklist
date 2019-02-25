@@ -18,11 +18,12 @@ namespace AnywhereChecklist.Apps.Services
         {
             connection = new HubConnectionBuilder()
                                 .WithUrl(socketUrl + "/dataUpdates", o => {
-                                    //o.AccessTokenProvider = () => Task.FromResult(apiClient.UserToken);
-                                    o.Headers.Add("Authorization", "bearer " + apiClient.UserToken);
+                                    o.AccessTokenProvider = () => Task.FromResult(apiClient.UserToken);
                                 })
                                 .Build();
         }
+
+        public bool IsStarted => connection.State == HubConnectionState.Connected;
 
         public async Task StartAsync() => await connection.StartAsync();
 

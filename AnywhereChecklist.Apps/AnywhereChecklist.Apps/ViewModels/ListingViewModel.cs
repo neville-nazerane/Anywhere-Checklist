@@ -36,15 +36,18 @@ namespace AnywhereChecklist.Apps.ViewModels
 
         public async Task InitAsync()
         {
-            await updateSocket.StartAsync();
-            updateSocket.OnCheckListAdded(added => {
-                Lists.Add(added);
-            });
-            updateSocket.OnCheckListUpdated(updated
-                => Lists[Lists.IndexOf(Lists.SingleOrDefault(l => l.Id == updated.Id))] = updated);
+            if (!updateSocket.IsStarted)
+            {
+                await updateSocket.StartAsync();
+                updateSocket.OnCheckListAdded(added => {
+                    Lists.Add(added);
+                });
+                updateSocket.OnCheckListUpdated(updated
+                    => Lists[Lists.IndexOf(Lists.SingleOrDefault(l => l.Id == updated.Id))] = updated);
+                updateSocket.OnCheckListDeleted(id => Lists.Remove(Lists.SingleOrDefault(l => l.Id == id)));
+            }
             Lists = new ObservableCollection<CheckList>(await repository.GetAsync());
             _changed(nameof(Lists));
-            updateSocket.OnCheckListDeleted(id => Lists.Remove(Lists.SingleOrDefault(l => l.Id == id)));
         }
 
         async Task _add()

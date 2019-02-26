@@ -14,11 +14,11 @@ namespace AnywhereChecklist.Apps.Services
 
         private readonly HubConnection connection;
 
-        public UpdateSocket(ApiClient apiClient)
+        public UpdateSocket()
         {
             connection = new HubConnectionBuilder()
                                 .WithUrl(socketUrl + "/dataUpdates", o => {
-                                    o.AccessTokenProvider = () => Task.FromResult(apiClient.UserToken);
+                                    o.AccessTokenProvider = async () => await ApiClient.GetJwtAsync();
                                 })
                                 .Build();
         }

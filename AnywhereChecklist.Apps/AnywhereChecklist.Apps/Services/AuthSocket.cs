@@ -4,6 +4,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
+using Xamarin.Essentials;
 using static AnywhereChecklist.Apps.Services.Constants;
 
 namespace AnywhereChecklist.Apps.Services
@@ -23,15 +24,14 @@ namespace AnywhereChecklist.Apps.Services
                                 .WithUrl(socketUrl + "/authHub")
                                 .Build();
 
-            connection.On<string>("authorized", Authenticate);
+            connection.On<string>("authorized", async (token) => await AuthenticateAsync(token));
 
             this.apiClient = apiClient;
         }
 
-        void Authenticate(string token)
+        async Task AuthenticateAsync(string token)
         {
-            apiClient.UserToken = token;
-            apiClient.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+            await apiClient.SetJwtAsync(token);
             OnAuthenticated(this, EventArgs.Empty);
         }
 

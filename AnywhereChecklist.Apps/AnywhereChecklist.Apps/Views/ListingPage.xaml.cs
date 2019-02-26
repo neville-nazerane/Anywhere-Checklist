@@ -27,6 +27,13 @@ namespace AnywhereChecklist.Apps.Views
 
             Appearing += ListingPage_Appearing;
 
+            logout.Clicked += Logout_Clicked;
+
+        }
+
+        private async void Logout_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new AuthPage());
         }
 
         private async void ListingPage_Appearing(object sender, EventArgs e)
@@ -37,13 +44,13 @@ namespace AnywhereChecklist.Apps.Views
                 BindingContext = vm;
                 await vm.InitAsync();
             }
-            else
-                await Navigation.PushModalAsync(new AuthPage());
+            else await Navigation.PushModalAsync(new AuthPage());
         }
 
         protected override void OnDisappearing()
         {
             Appearing -= ListingPage_Appearing;
+            logout.Clicked -= Logout_Clicked;
             base.OnDisappearing();
         }
 

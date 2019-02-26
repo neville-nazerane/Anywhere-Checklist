@@ -10,7 +10,7 @@ namespace AnywhereChecklist.Apps
         public App()
         {
             InitializeComponent();
-
+            
             MainPage = new ListingPage();
         }
 

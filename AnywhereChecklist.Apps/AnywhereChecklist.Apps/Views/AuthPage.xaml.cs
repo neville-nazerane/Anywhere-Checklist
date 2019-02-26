@@ -24,15 +24,10 @@ namespace AnywhereChecklist.Apps.Views
 
         private async void AuthPage_Appearing(object sender, EventArgs e)
         {
-            if (IsAuthenticated())
-                await Navigation.PushModalAsync(new ListingPage());
-            else
-            {
-                var socket = Get<AuthSocket>();
-                socket.OnAuthenticated += Socket_OnAuthenticated;
-                await socket.StartAsync();
-                Device.OpenUri(new Uri(socket.LoginPath));
-            }
+            var socket = Get<AuthSocket>();
+            socket.OnAuthenticated += Socket_OnAuthenticated;
+            await socket.StartAsync();
+            Device.OpenUri(new Uri(socket.LoginPath));
         }
 
         private async void Socket_OnAuthenticated(object sender, EventArgs e) 

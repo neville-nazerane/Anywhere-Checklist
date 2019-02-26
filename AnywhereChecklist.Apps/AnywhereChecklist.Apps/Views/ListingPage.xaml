@@ -26,6 +26,7 @@
             </StackLayout>
 
             <Button Text="reload" Clicked="ListingPage_Appearing" />
+            <Button x:Name="logout" Text="Logout" />
 
         </StackLayout>
     </ContentPage.Content>

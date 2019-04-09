@@ -10,7 +10,7 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="NetCore.Jwt" Version="1.0.0" />
-    <PackageReference Include="NSwag.AspNetCore" Version="12.0.14" />
+    <PackageReference Include="NSwag.AspNetCore" Version="12.1.0" />
   </ItemGroup>
 
   <ItemGroup>

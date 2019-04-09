@@ -3,6 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AnywhereChecklist.Apps.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="Visual" Value="Material" />
+                <Setter Property="BackgroundColor" Value="AliceBlue" />
+                <Setter Property="TextColor" Value="Chocolate" />
+                <Setter Property="CornerRadius" Value="15" />
+            </Style>
 
+            <Style TargetType="Entry">
+                <Setter Property="Visual" Value="Material" />
+                <Setter Property="BackgroundColor" Value="Aqua" />
+            </Style>
+            
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

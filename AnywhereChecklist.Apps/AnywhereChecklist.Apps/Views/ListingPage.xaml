@@ -17,7 +17,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
+   
             <StackLayout>
                 <Entry Placeholder="New list"
                        Text="{Binding NewList.Title}" />
@@ -25,9 +25,10 @@
                         Command="{Binding Add}" />
             </StackLayout>
 
-            <Button Text="reload" Clicked="ListingPage_Appearing" />
+            <Button Text="reload" 
+                    Clicked="ListingPage_Appearing" />
             <Button x:Name="logout" Text="Logout" />
-
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

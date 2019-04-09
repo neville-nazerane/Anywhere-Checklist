@@ -38,7 +38,7 @@ namespace AnywhereChecklist.Apps.Views
 
         private async void ListingPage_Appearing(object sender, EventArgs e)
         {
-            if (IsAuthenticated())
+            if (await IsAuthenticatedAsync())
             {
                 var vm = Get<ListingViewModel>();
                 BindingContext = vm;

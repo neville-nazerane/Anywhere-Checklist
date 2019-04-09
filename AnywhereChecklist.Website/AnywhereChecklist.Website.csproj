@@ -11,8 +11,8 @@
     <PackageReference Include="AspNetCore.KeyVault" Version="1.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.0.6" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.2" />
+    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.0.8" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="NetCore.Angular" Version="2.0.2" />
     <PackageReference Include="NetCore.Jwt" Version="1.0.0" />
     <PackageReference Include="NetCore.ModelValidation" Version="1.0.2" />

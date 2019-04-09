@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AnywhereChecklist.Apps.Services
 {
@@ -30,7 +31,7 @@ namespace AnywhereChecklist.Apps.Services
 
         public static T Get<T>() => ServiceProvider.Get<T>();
 
-        public static bool IsAuthenticated() => Get<ApiClient>().IsAuthenticated();
+        public static async Task<bool> IsAuthenticatedAsync() => await Get<ApiClient>().IsAuthenticatedAsync();
 
         public static void UnAuthenticate() => Get<ApiClient>().UnAuthenticate();
 

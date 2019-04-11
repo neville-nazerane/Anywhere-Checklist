@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:AnywhereChecklist.Apps.ViewModels"
              x:Class="AnywhereChecklist.Apps.Components.CheckListView"
-             x:DataType="vm:CheckListsViewModel" >
+             x:DataType="vm:CheckListDisplay" >
 
     <StackLayout>
 
@@ -11,18 +11,29 @@
                      Orientation="Horizontal">
             <Label Text="{Binding CheckList.Title}"
                    FontAttributes="Bold" />
-            <Button Text="Edit"
-                    Command="{Binding StartEditing}" />
-            <Button Text="Delete"
-                    Command="{Binding Delete}" />
+
+            <StackLayout 
+                Orientation="Horizontal"
+                HorizontalOptions="EndAndExpand">
+                <Button Text="Edit"
+                        Command="{Binding StartEditing}" />
+                <Button Text="Delete"
+                        Command="{Binding Delete}" />
+            </StackLayout>
         </StackLayout>
 
         <StackLayout IsVisible="{Binding IsEditing}" Orientation="Horizontal" >
-            <Entry Text="{Binding Update.Title}" />
-            <Button Text="Cancel"
-                    Command="{Binding StopEditing}" />
-            <Button Text="Save"
-                    Command="{Binding SaveEdit}" />
+            <Entry Text="{Binding Update.Title}"
+                   
+                   HorizontalOptions="FillAndExpand" />
+
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="EndAndExpand">
+                <Button Text="Cancel"
+                        Command="{Binding StopEditing}" />
+                <Button Text="Save"
+                        Command="{Binding SaveEdit}" />
+            </StackLayout>
         </StackLayout>
 
 

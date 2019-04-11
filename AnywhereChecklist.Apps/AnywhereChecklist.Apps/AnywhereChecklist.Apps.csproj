@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\AnywhereChecklist.Entities\AnywhereChecklist.Entities.csproj" />
+    <ProjectReference Include="..\..\AnywhereChecklist.Mapper\AnywhereChecklist.Mapper.csproj" />
     <ProjectReference Include="..\..\AnywhereChecklist.Models\AnywhereChecklist.Models.csproj" />
   </ItemGroup>
 

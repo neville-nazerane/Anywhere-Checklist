@@ -11,9 +11,11 @@
 
             <ListView ItemsSource="{Binding Lists}">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="entities:CheckList">
-                        <TextCell Text="{Binding Title}" />
-                        <!--<components:CheckListView CheckList="{Binding}" />-->
+                    <DataTemplate >
+                        <!--<TextCell Text="{Binding CheckList.Title}" />-->
+                        <ViewCell>
+                            <components:CheckListView/>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

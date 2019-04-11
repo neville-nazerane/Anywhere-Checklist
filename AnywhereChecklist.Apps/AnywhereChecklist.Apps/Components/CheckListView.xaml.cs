@@ -16,26 +16,26 @@ namespace AnywhereChecklist.Apps.Components
     public partial class CheckListView : StackLayout
     {
 
-        public static readonly BindableProperty CheckListProperty = BindableProperty.Create(
-                                                                      propertyName: nameof(CheckList),
-                                                                      returnType: typeof(string),
-                                                                      declaringType: typeof(CheckList),
-                                                                      defaultValue: null,
-                                                                      defaultBindingMode: BindingMode.TwoWay,
-                                                                      propertyChanged: (b, o, n) => b.SetValue(CheckListProperty, n));
-        public CheckList CheckList
-        {
-            get => _viewModel?.CheckList;
-            set => _viewModel.CheckList = value;
-        }
+        //public static readonly BindableProperty CheckListProperty = BindableProperty.Create(
+        //                                                              propertyName: nameof(CheckList),
+        //                                                              returnType: typeof(string),
+        //                                                              declaringType: typeof(CheckList),
+        //                                                              defaultValue: null,
+        //                                                              defaultBindingMode: BindingMode.TwoWay,
+        //                                                              propertyChanged: (b, o, n) => b.SetValue(CheckListProperty, n));
+        //public CheckList CheckList
+        //{
+        //    get => _viewModel?.CheckList;
+        //    set => _viewModel.CheckList = value;
+        //}
 
-        readonly CheckListsViewModel _viewModel;
+        //readonly CheckListsViewModel _viewModel;
 
         public CheckListView()
         {
             InitializeComponent();
-            _viewModel = Provider.Get<CheckListsViewModel>();
-            BindingContext = CheckList;
+            //_viewModel = Provider.Get<CheckListsViewModel>();
+            //BindingContext = CheckList;
         }
     }
 }

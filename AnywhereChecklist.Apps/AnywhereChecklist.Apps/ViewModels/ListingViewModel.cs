@@ -13,14 +13,12 @@ using System.Linq;
 
 namespace AnywhereChecklist.Apps.ViewModels
 {
-    public class ListingViewModel : INotifyPropertyChanged
+    public class ListingViewModel : ViewModelBase
     {
         private readonly ListsRepository repository;
         private readonly UpdateSocket updateSocket;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public ObservableCollection<CheckList> Lists { get; set; }
+        public ObservableCollection<CheckListDisplay> Lists { get; set; }
 
         public CheckListAdd NewList { get; set; }
 
@@ -40,14 +38,14 @@ namespace AnywhereChecklist.Apps.ViewModels
             {
                 await updateSocket.StartAsync();
                 updateSocket.OnCheckListAdded(added => {
-                    Lists.Add(added);
+                    Lists.Add(_makeDisplay(added));
                 });
                 updateSocket.OnCheckListUpdated(updated
-                    => Lists[Lists.IndexOf(Lists.SingleOrDefault(l => l.Id == updated.Id))] = updated);
+                    => Lists[Lists.IndexOf(Lists.SingleOrDefault(l => l.Id == updated.Id))] = _makeDisplay(updated));
                 updateSocket.OnCheckListDeleted(id => Lists.Remove(Lists.SingleOrDefault(l => l.Id == id)));
             }
-            Lists = new ObservableCollection<CheckList>(await repository.GetAsync());
-            _changed(nameof(Lists));
+            Lists = new ObservableCollection<CheckListDisplay>((await repository.GetAsync()).Select(c => _makeDisplay(c)));
+            OnPropertyChanged(nameof(Lists));
         }
 
         async Task _add()
@@ -56,15 +54,14 @@ namespace AnywhereChecklist.Apps.ViewModels
             {
                 await repository.AddAsync(NewList);
                 NewList = new CheckListAdd();
-                _changed(nameof(NewList));
+                OnPropertyChanged(nameof(NewList));
             }
             catch { }
         }
 
-        void _changed(string property)
-        {
-            PropertyChanged(this, new PropertyChangedEventArgs(property));
-        }
+        CheckListDisplay _makeDisplay(CheckList checkList)
+            => new CheckListDisplay(repository) { CheckList = checkList };
+
 
     }
 }

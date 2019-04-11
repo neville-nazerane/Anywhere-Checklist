@@ -21,7 +21,7 @@ namespace AnywhereChecklist.Web.DataAccess
 
         public async Task<CheckList> AddAsync(CheckListAdd add, int userId)
         {
-            var toAdd = add.ToCheckList();
+            var toAdd = add.ToAdd();
             toAdd.CreatedOn = DateTime.Now;
             toAdd.UserId = userId;
             await context.AddAsync(toAdd);

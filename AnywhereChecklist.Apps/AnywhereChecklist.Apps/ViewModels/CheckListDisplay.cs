@@ -1,22 +1,23 @@
-﻿using AnywhereChecklist.Entities;
+﻿using AnywhereChecklist.Apps.Services;
+using AnywhereChecklist.Entities;
+using AnywhereChecklist.Mapper;
 using AnywhereChecklist.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Xamarin.Forms;
-using AnywhereChecklist.Apps.Services;
 using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using Xamarin.Forms;
 
 namespace AnywhereChecklist.Apps.ViewModels
 {
-    public class CheckListsViewModel : ViewModelBase
+    public class CheckListDisplay : ViewModelBase
     {
         private readonly ListsRepository repository;
         private bool isEditing;
         private CheckList checkList;
         private CheckListUpdate update;
+
+        public int Id => checkList.Id;
 
         public CheckList CheckList
         {
@@ -24,6 +25,7 @@ namespace AnywhereChecklist.Apps.ViewModels
             set
             {
                 checkList = value;
+                Update = value.ToUpdate();
                 OnPropertyChanged();
             }
         }
@@ -38,8 +40,6 @@ namespace AnywhereChecklist.Apps.ViewModels
             }
         }
 
-        public bool NotEditing => !IsEditing;
-
         public bool IsEditing
         {
             get => isEditing;
@@ -50,6 +50,7 @@ namespace AnywhereChecklist.Apps.ViewModels
                 OnPropertyChanged(nameof(NotEditing));
             }
         }
+        public bool NotEditing => !IsEditing;
 
         #region commands
 
@@ -60,7 +61,7 @@ namespace AnywhereChecklist.Apps.ViewModels
 
         #endregion
 
-        public CheckListsViewModel(ListsRepository repository)
+        public CheckListDisplay(ListsRepository repository)
         {
             StartEditing = new Command(_startEditing);
             StopEditing = new Command(_stopEditing);
@@ -86,4 +87,5 @@ namespace AnywhereChecklist.Apps.ViewModels
         async Task _delete() => await repository.DeleteAsync(CheckList.Id);
 
     }
+
 }

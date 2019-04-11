@@ -9,7 +9,7 @@ namespace AnywhereChecklist.Mapper
     public static class CheckListMappingExtensions
     {
 
-        public static CheckList ToCheckList(this CheckListAdd add)
+        public static CheckList ToAdd(this CheckListAdd add)
             => new CheckList {
                     Title = add.Title
                 };
@@ -18,6 +18,12 @@ namespace AnywhereChecklist.Mapper
         {
             checkList.Title = update.Title;
         }
+
+        public static CheckListUpdate ToUpdate(this CheckList list)
+            => new CheckListUpdate {
+                 Id = list.Id,
+                 Title = list.Title
+            };
 
     }
 }

@@ -6,14 +6,10 @@
         <ResourceDictionary>
             <Style TargetType="Button">
                 <Setter Property="Visual" Value="Material" />
-                <Setter Property="BackgroundColor" Value="AliceBlue" />
-                <Setter Property="TextColor" Value="Chocolate" />
-                <Setter Property="CornerRadius" Value="15" />
             </Style>
 
             <Style TargetType="Entry">
                 <Setter Property="Visual" Value="Material" />
-                <Setter Property="BackgroundColor" Value="Aqua" />
             </Style>
             
         </ResourceDictionary>

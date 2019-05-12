@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetCore.Apis.Consumer;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -12,6 +13,7 @@ namespace AnywhereChecklist.Apps.Services
     {
 
         public HttpClient Client { get; }
+        public ApiConsumer Consumer { get; }
 
         const string JwtKey = "authJwt";
 
@@ -19,7 +21,10 @@ namespace AnywhereChecklist.Apps.Services
         {
             Client = new HttpClient {
                 BaseAddress = new Uri(Constants.baseUrl)
-            };   
+            };
+            Consumer = new ApiConsumer(Client) {
+                ApiVersion = ApiVersion.Version_2_2
+            };
         }
 
         public async Task SetJwtAsync(string token)
@@ -30,7 +35,7 @@ namespace AnywhereChecklist.Apps.Services
 
         void SetAuthHeader(string token)
         {
-            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+            Consumer.BearerToken = token;
         }
 
         public static async Task<string> GetJwtAsync() => await SecureStorage.GetAsync(JwtKey);

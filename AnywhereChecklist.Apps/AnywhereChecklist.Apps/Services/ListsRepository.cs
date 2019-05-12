@@ -70,5 +70,7 @@ namespace AnywhereChecklist.Apps.Services
             await apiClient.Client.DeleteAsync($"{path}/{id}");
         }
 
+        
+
     }
 }

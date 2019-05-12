@@ -23,6 +23,10 @@ namespace AnywhereChecklist.WebAPI.Controllers
             this.repository = repository;
         }
 
+        [HttpGet("list/{listId}")]
+        public async Task<ActionResult<IEnumerable<CheckListItem>>> GetForList(int listId)
+            => Ok(await repository.GetForListAcync(listId));
+
         [HttpGet("{id}")]
         public async Task<ActionResult<CheckListItem>> Get(int id)
             => await repository.GetAync(id);

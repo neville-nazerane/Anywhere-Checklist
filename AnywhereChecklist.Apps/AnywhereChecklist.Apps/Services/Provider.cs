@@ -17,6 +17,7 @@ namespace AnywhereChecklist.Apps.Services
                 .AddScoped<AuthSocket>()
                 .AddScoped<UpdateSocket>()
                 .AddScoped<ListsRepository>()
+                .AddScoped<ItemsRepository>()
 
                 // view models
                 .AddScoped<ListingViewModel>()

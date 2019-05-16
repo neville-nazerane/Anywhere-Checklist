@@ -23,7 +23,6 @@ namespace AnywhereChecklist.Apps.Views
 
             InitializeComponent();
 
-            int i = 99;
 
             Appearing += ListingPage_Appearing;
 

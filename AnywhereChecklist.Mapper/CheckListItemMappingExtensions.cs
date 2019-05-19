@@ -16,6 +16,21 @@ namespace AnywhereChecklist.Mapper
                 CheckListId = add.CheckListId
             };
 
+        public static CheckListItem ToCheckListItem(this CheckListItemUpdate update)
+            => new CheckListItem
+            {
+                Id = update.Id,
+                Content = update.Content,
+                IsCompleted = update.IsCompleted
+            };
+
+        public static CheckListItemUpdate ToUpdate(this CheckListItem item)
+            => new CheckListItemUpdate {
+                Id = item.Id,
+                Content = item.Content,
+                IsCompleted = item.IsCompleted
+            };
+
         public static void UpdateFrom(this CheckListItem item, CheckListItemUpdate update)
         {
             item.Content = update.Content;

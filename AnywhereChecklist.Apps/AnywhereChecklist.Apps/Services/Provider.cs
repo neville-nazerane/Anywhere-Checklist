@@ -21,7 +21,7 @@ namespace AnywhereChecklist.Apps.Services
 
                 // view models
                 .AddScoped<ListingViewModel>()
-                .AddScoped<ListingViewModel>()
+                .AddScoped<CheckListViewModel>()
 
                 .BuildServiceProvider();
 

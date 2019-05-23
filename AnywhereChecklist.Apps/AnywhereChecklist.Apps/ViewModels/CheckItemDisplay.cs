@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AnywhereChecklist.Apps.ViewModels
 {
-    class CheckItemDisplay : ViewModelBase
+    public class CheckItemDisplay : ViewModelBase
     {
         private bool isEditing;
         private CheckListItem item;

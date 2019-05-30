@@ -14,7 +14,7 @@
                     <DataTemplate >
                         <!--<TextCell Text="{Binding CheckList.Title}" />-->
                         <ViewCell>
-                            <components:CheckListView/>
+                            <components:CheckListView />
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -27,8 +27,7 @@
                         Command="{Binding Add}" />
             </StackLayout>
 
-            <Button Text="reload" 
-                    Clicked="ListingPage_Appearing" />
+            <Button Text="reload" />
             <Button x:Name="logout" Text="Logout" />
             
         </StackLayout>

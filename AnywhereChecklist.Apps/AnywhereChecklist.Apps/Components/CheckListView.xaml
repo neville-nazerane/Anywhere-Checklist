@@ -3,40 +3,58 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:AnywhereChecklist.Apps.ViewModels"
              x:Class="AnywhereChecklist.Apps.Components.CheckListView"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
              x:DataType="vm:CheckListDisplay" >
 
-    <StackLayout>
 
-        <StackLayout IsVisible="{Binding NotEditing}"
-                     Orientation="Horizontal">
-            <Label Text="{Binding CheckList.Title}"
+        <Grid  d:IsVisible="True"
+                     IsVisible="{Binding NotEditing}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            
+            <Label d:Text="Sample text here"
+                   Text="{Binding CheckList.Title}"
                    FontAttributes="Bold" />
+            <Button Text="Edit"
+                    Grid.Column="1" 
+                    Command="{Binding StartEditing}"  />
+            <Button Text="Delete"
+                    Grid.Column="2"
+                    Command="{Binding Delete}" />
 
-            <StackLayout 
-                Orientation="Horizontal"
-                HorizontalOptions="EndAndExpand">
-                <Button Text="Edit"
-                        Command="{Binding StartEditing}" />
-                <Button Text="Delete"
-                        Command="{Binding Delete}" />
-            </StackLayout>
-        </StackLayout>
+        <Button Text="View"
+                    Grid.Column="3"
+                    Command="{Binding ShowCMD}" />
+    </Grid>
+        
 
-        <StackLayout IsVisible="{Binding IsEditing}" Orientation="Horizontal" >
-            <Entry Text="{Binding Update.Title}"
-                   
-                   HorizontalOptions="FillAndExpand" />
+        <Grid d:IsVisible="False"
+            IsVisible="{Binding IsEditing}" >
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            
+            <Entry d:Text="Sample input"
+                    Text="{Binding Update.Title}" />
 
-            <StackLayout Orientation="Horizontal"
-                         HorizontalOptions="EndAndExpand">
-                <Button Text="Cancel"
-                        Command="{Binding StopEditing}" />
-                <Button Text="Save"
-                        Command="{Binding SaveEdit}" />
-            </StackLayout>
-        </StackLayout>
+            <Button Text="Cancel"
+                    Grid.Column="1"
+                    Command="{Binding StopEditing}" />
+            <Button Text="Save"
+                    Grid.Column="2"
+                    Command="{Binding SaveEdit}" />
+        </Grid>
 
 
-    </StackLayout>
     
 </StackLayout>

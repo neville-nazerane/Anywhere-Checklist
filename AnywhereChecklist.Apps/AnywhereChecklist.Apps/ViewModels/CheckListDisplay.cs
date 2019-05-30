@@ -59,6 +59,8 @@ namespace AnywhereChecklist.Apps.ViewModels
         public Command SaveEdit { get; private set; }
         public Command Delete { get; private set; }
 
+        public Command ShowCMD { get; set; }
+
         #endregion
 
         public CheckListDisplay(ListsRepository repository)
@@ -67,6 +69,7 @@ namespace AnywhereChecklist.Apps.ViewModels
             StopEditing = new Command(_stopEditing);
             SaveEdit = new Command(async () => await _saveEdit());
             Delete = new Command(async () => await _delete());
+            ShowCMD = new Command(async() => await ShowAsync());
             this.repository = repository;
         }
 
@@ -85,6 +88,11 @@ namespace AnywhereChecklist.Apps.ViewModels
         }
 
         async Task _delete() => await repository.DeleteAsync(CheckList.Id);
+
+        async Task ShowAsync()
+        {
+            await Shell.Current.GoToAsync("item?id=" + Id);
+        }
 
     }
 

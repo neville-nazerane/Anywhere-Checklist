@@ -44,6 +44,11 @@ namespace AnywhereChecklist.Apps.Views
             else await Navigation.PushModalAsync(new AuthPage());
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            return base.OnBackButtonPressed();
+        }
+
         protected override void OnDisappearing()
         {
             logout.Clicked -= Logout_Clicked;

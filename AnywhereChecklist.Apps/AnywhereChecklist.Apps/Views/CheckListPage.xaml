@@ -7,7 +7,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:DataType="vm:CheckListDisplay">
+             x:DataType="vm:CheckListViewModel">
     <ContentPage.Content>
         <Grid>
             <Label d:Text="Check list name here"
